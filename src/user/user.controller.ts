@@ -8,6 +8,7 @@ export class UserController {
     constructor(
         private userService: UserService
     ){}
+    
 
     @Get('/:email')
     async get(@Param('email') email: string){
