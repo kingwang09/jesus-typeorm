@@ -1,4 +1,4 @@
-import { encryptTransformerConfig } from "src/util/encrypt-transformer";
+import { encryptTransformer, getEncryptTransformer } from "src/util/encrypt-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { EncryptionTransformer } from "typeorm-encrypted";
 
@@ -9,7 +9,8 @@ export class User{
 
     @Column({
         unique: true, 
-        transformer: new EncryptionTransformer(encryptTransformerConfig),
+        //transformer: getEncryptTransformer(),
+        transformer: encryptTransformer,
         nullable: false,
     })
     email: string;

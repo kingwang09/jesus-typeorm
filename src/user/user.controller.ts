@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { UserService } from './user.service';
 import e from 'express';
 import { User } from './user.entity';
+import { encryptTransformer, getEncryptTransformer } from 'src/util/encrypt-transformer';
 
 @Controller('user')
 export class UserController {
@@ -12,6 +13,7 @@ export class UserController {
 
     @Get('/:email')
     async get(@Param('email') email: string){
+        console.log('email: ', getEncryptTransformer().to(email));
         const user = await this.userService.getUser(email);
         console.log('find User: ', user);
         return user;
@@ -19,6 +21,7 @@ export class UserController {
 
     @Post()
     async create(@Body() user: User){
+        console.log('before created User:', user);
         const createdUser = await this.userService.createUser(user);
         console.log('created User: ', createdUser);
         return createdUser;

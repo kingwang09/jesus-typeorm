@@ -11,19 +11,19 @@ export const ormconfig: TypeOrmModuleAsyncOptions = {
         database: configService.get('DB'),
         synchronize: true,//for dev
         logging: true,
-        logger: TypeOrmLoggerContainer.ForConnection(
-            //'default',
-            'all',
-            [
-              'query',
-              'schema',
-              'error',
-              'warn',
-              'info',
-              'log',
-              'migration',
-            ],
-          ),
+        // logger: TypeOrmLoggerContainer.ForConnection(
+        //     //'default',
+        //     'all',
+        //     [
+        //       'query',
+        //       'schema',
+        //       'error',
+        //       'warn',
+        //       'info',
+        //       'log',
+        //       'migration',
+        //     ],
+        //   ),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
     }),
 }
