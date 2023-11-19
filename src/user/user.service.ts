@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
+import { CreateUserDto, UpdateUserDto } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -10,10 +11,21 @@ export class UserService {
         private userRepository: Repository<User>,
     ){}
 
-    createUser(user: User): Promise<User> {
-        const newUser = {
-            ...user
-        };
+    createUser(userDto: CreateUserDto): Promise<User> {
+        /**
+         * new를 해야 created가 제대로 들어감.
+         * 단점) property를 수동으로 넣어줘야함.
+         */
+        // const newUser = new User();
+        // newUser.email = userDto.email;
+        // newUser.password = userDto.password;
+        // newUser.username = userDto.username;
+
+        //대안2) spread를 쓰고 차라리 date를 수동으로 넣어준다.
+        const newUser: User = {
+            ...userDto,
+            created: new Date(),
+        }
         console.log('new User: ', newUser);
         return this.userRepository.save(newUser);
     }
@@ -26,11 +38,11 @@ export class UserService {
         });
     }
 
-    async updateUser(email: string, _user: User){ //user를 User로 지정 시 에러남.
-        const user = await this.getUser(email);
-        console.log('current user :', _user);
-        user.username = _user.username;
-        user.password = _user.password;
+    async updateUser(userDto: UpdateUserDto){ //user를 User로 지정 시 에러남.
+        const user = await this.getUser(userDto.email);
+        console.log('current user :', user);
+        user.username = userDto.username;
+        user.password = userDto.password;
         console.log('update user :', user);
         return this.userRepository.save(user);
     }

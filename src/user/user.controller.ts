@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import e from 'express';
 import { User } from './user.entity';
 import { encryptTransformer, getEncryptTransformer } from 'src/utils/encrypt-transformer';
+import { CreateUserDto, UpdateUserDto } from './user.dto';
 
 @Controller('user')
 export class UserController {
@@ -20,16 +21,16 @@ export class UserController {
     }
 
     @Post()
-    async create(@Body() user: User){
-        console.log('before created User:', user);
-        const createdUser = await this.userService.createUser(user);
+    async create(@Body() userDto: CreateUserDto){
+        console.log('before created UserDto:', userDto);
+        const createdUser = await this.userService.createUser(userDto);
         console.log('created User: ', createdUser);
         return createdUser;
     }
 
-    @Put('/:email')
-    async update(@Param('email') email: string, @Body() user: User){
-        const updatedUser = await this.userService.updateUser(email, user);
+    @Put()
+    async update(@Body() userDto: UpdateUserDto){
+        const updatedUser = await this.userService.updateUser(userDto);
         console.log('updated user: ', updatedUser);
         return updatedUser;
     }
