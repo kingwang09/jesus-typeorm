@@ -11,10 +11,9 @@ export class UserService {
     ){}
 
     createUser(user: User): Promise<User> {
-        let newUser = new User();
-        newUser.email = user.email;
-        newUser.password = user.password;
-        newUser.username = user.username;
+        const newUser = {
+            ...user
+        };
         console.log('new User: ', newUser);
         return this.userRepository.save(newUser);
     }
