@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { UserService } from './user.service';
 import e from 'express';
 import { User } from './user.entity';
-import { encryptTransformer, getEncryptTransformer } from 'src/util/encrypt-transformer';
+import { encryptTransformer, getEncryptTransformer } from 'src/utils/encrypt-transformer';
 
 @Controller('user')
 export class UserController {

@@ -1,4 +1,4 @@
-import { encryptTransformer, getEncryptTransformer } from "src/util/encrypt-transformer";
+import { EncryptTransformer, encryptTransformer, getEncryptTransformer } from "src/utils/encrypt-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { EncryptionTransformer } from "typeorm-encrypted";
 
@@ -10,7 +10,16 @@ export class User{
     @Column({
         unique: true, 
         //transformer: getEncryptTransformer(),
-        transformer: encryptTransformer,
+        //transformer: encryptTransformer,
+        transformer: {
+            from(value: string) {
+                console.log('value: ', value);
+                return getEncryptTransformer().from(value);
+            },
+            to(value: string){
+                return getEncryptTransformer().to(value);
+            }
+        },
         nullable: false,
     })
     email: string;
@@ -23,4 +32,12 @@ export class User{
 
     @Column({default: true})
     created: Date = new Date();
+
+    // getEncryptEmail(): string | undefined {
+    //     return encryptTransformer.to(this.email);
+    // }
+
+    // getEncryptUserName(): string | undefined {
+    //     return encryptTransformer.to(this.username);
+    // }
 }

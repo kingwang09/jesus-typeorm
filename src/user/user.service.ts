@@ -11,7 +11,12 @@ export class UserService {
     ){}
 
     createUser(user: User): Promise<User> {
-        return this.userRepository.save(user);
+        let newUser = new User();
+        newUser.email = user.email;
+        newUser.password = user.password;
+        newUser.username = user.username;
+        console.log('new User: ', newUser);
+        return this.userRepository.save(newUser);
     }
 
     async getUser(email: string){

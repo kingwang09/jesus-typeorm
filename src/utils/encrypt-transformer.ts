@@ -10,6 +10,15 @@ export const encryptTransformer: EncryptionTransformer = new EncryptionTransform
     iv: process.env.ENCRYPTION_IV,
 });
 
+export const EncryptTransformer: EncryptionTransformer = new EncryptionTransformer(
+    {
+      key: process.env.ENCRYPTION_KEY,
+      algorithm: 'aes-256-cbc',
+      ivLength: 16,
+      iv: process.env.ENCRYPTION_IV,
+    },
+  );
+
 
 export function getEncryptTransformer(){
     console.log('[util] process.env.ENCRYPTION_KEY', process.env.ENCRYPTION_KEY);

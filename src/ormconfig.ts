@@ -1,6 +1,6 @@
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModuleAsyncOptions } from "@nestjs/typeorm";
-import { TypeOrmLoggerContainer } from "./util/typeorm-logger.container";
+import { TypeOrmLoggerContainer } from "./utils/typeorm-logger.container";
 
 //이게 필요한 것 같음.
 export const ormconfig: TypeOrmModuleAsyncOptions = {
