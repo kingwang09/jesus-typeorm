@@ -3,6 +3,7 @@ import { CreateUserDto } from 'src/user/user.dto';
 import { AuthService } from './auth.service';
 import { CookieLoginGuard } from './auth.cookie.guard';
 import { AuthenticatedGuard, LocalAuthGuard } from './auth.session.guard';
+import { GoogleAuthGuard } from './auth.google.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -44,6 +45,19 @@ export class AuthController {
     @Get('/session/test')
     testSession(@Request() req){
         return req.user;
+    }
+
+    @UseGuards(GoogleAuthGuard)
+    @Get('/to-google')
+    googleLogin(@Request() req){
+        
+    }
+
+    @UseGuards(GoogleAuthGuard)
+    @Get('/google')
+    googleTest(@Request() req, @Response() res){
+        const { user } = req;
+        return res.send(user);
     }
 
     

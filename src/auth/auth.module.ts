@@ -5,6 +5,7 @@ import { UserModule } from 'src/user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 import { SessionSerializer } from './session.serializer';
+import { GoogleStrategy } from './google.strategy';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SessionSerializer } from './session.serializer';
   providers: [
     AuthService,
     LocalStrategy, SessionSerializer,//session 관련 provider
+    GoogleStrategy, //OAuth Strategy
   ],
   controllers: [AuthController]
 })
