@@ -9,14 +9,17 @@ export class User{
 
     @Column({
         unique: true, 
+        //transformer: EncryptTransformer,
         //transformer: getEncryptTransformer(),
         //transformer: encryptTransformer,
         transformer: {
             from(value: string) {
                 return getEncryptTransformer().from(value);
+                // return EncryptTransformer.from(value);
             },
             to(value: string){
                 return getEncryptTransformer().to(value);
+                // return EncryptTransformer.to(value);
             }
         },
         nullable: false,

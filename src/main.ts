@@ -4,10 +4,15 @@ import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import * as passport from 'passport';
 import * as session from 'express-session';//이것도 중요함.: import session from 'express-session'하면 안됨.
+import * as dotenv from 'dotenv/config';
 
 async function bootstrap() {
+  const test = process.env.TEST;
+  console.log(test);
+  
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
+
   //auth: cookie setting
   app.use(cookieParser());
 
