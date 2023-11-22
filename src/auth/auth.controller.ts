@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Request, Response, UseGuards } from '@nest
 import { CreateUserDto } from 'src/user/user.dto';
 import { AuthService } from './auth.service';
 import { CookieLoginGuard } from './auth.cookie.guard';
+import { AuthenticatedGuard, LocalAuthGuard } from './auth.session.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -28,8 +29,22 @@ export class AuthController {
     }
 
     @UseGuards(CookieLoginGuard)
-    @Get('/test')
+    @Get('/cookie/test')
     testGuard(){
         return '로그인한 경우에만 보여야합니다.';
     }
+
+    @UseGuards(LocalAuthGuard)
+    @Post('/session/login')
+    sessionLogin(@Request() req){
+        return req.user;
+    }
+
+    @UseGuards(AuthenticatedGuard)
+    @Get('/session/test')
+    testSession(@Request() req){
+        return req.user;
+    }
+
+    
 }

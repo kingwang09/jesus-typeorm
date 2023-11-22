@@ -1,9 +1,10 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
-import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
+import { AuthGuard } from "@nestjs/passport";
+import { Observable } from "rxjs";
 
 @Injectable()
-export class CookieLoginGuard implements CanActivate{
+export class SessionLoginGuard implements CanActivate{
     constructor(private authService: AuthService){}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -24,4 +25,24 @@ export class CookieLoginGuard implements CanActivate{
         req.user = user;
         return true;
     }
+}
+
+@Injectable()
+export class LocalAuthGuard extends AuthGuard('local') {
+    async canActivate(context: ExecutionContext): Promise<boolean> {
+        const result = (await super.canActivate(context)) as boolean;
+        const req = context.switchToHttp().getRequest();
+        await super.logIn(req); //세션 저장 로직
+        return result;
+    }
+}
+
+@Injectable()
+export class AuthenticatedGuard implements CanActivate{
+    
+    canActivate(context: ExecutionContext): boolean {
+        const req = context.switchToHttp().getRequest();
+        return req.isAuthenticated();//세션에서 정보를 읽어서 인증 확인
+    }
+
 }
