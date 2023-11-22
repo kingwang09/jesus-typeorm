@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { ormconfig } from './ormconfig';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -26,6 +27,7 @@ import { ormconfig } from './ormconfig';
     //   logging: true,
     // }),
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
