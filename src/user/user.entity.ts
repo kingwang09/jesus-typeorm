@@ -13,7 +13,6 @@ export class User{
         //transformer: encryptTransformer,
         transformer: {
             from(value: string) {
-                console.log('value: ', value);
                 return getEncryptTransformer().from(value);
             },
             to(value: string){
