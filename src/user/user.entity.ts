@@ -32,8 +32,8 @@ export class User{
     @Column()
     username: string;
 
-    @Column({default: true})
-    created: Date = new Date();
+    @Column({default: false}) //default value에서 에러
+    createdAt: Date;
 
     // getEncryptEmail(): string | undefined {
     //     return encryptTransformer.to(this.email);

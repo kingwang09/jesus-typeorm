@@ -24,7 +24,7 @@ export class UserService {
         //대안2) spread를 쓰고 차라리 date를 수동으로 넣어준다.
         const newUser: User = {
             ...userDto,
-            created: new Date(),
+            createdAt: new Date(),
         }
         console.log('new User: ', newUser);
         return this.userRepository.save(newUser);
