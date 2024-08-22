@@ -71,3 +71,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## 세부 구현 내용
+- nestjs & typeorm 적용
+- tosspayment 샘플 예제 적용
