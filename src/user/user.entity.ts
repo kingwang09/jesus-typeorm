@@ -1,5 +1,5 @@
 import { EncryptTransformer, encryptTransformer, getEncryptTransformer } from "src/utils/encrypt-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { EncryptionTransformer } from "typeorm-encrypted";
 
 @Entity()
@@ -32,7 +32,7 @@ export class User{
     @Column()
     username: string;
 
-    @Column({default: false}) //default value에서 에러
+    @CreateDateColumn()
     createdAt: Date;
 
     // getEncryptEmail(): string | undefined {

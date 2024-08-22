@@ -7,6 +7,7 @@ import { User } from './user/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { ormconfig } from './ormconfig';
 import { AuthModule } from './auth/auth.module';
+import { TosspaymentsModule } from './tosspayments/tosspayments.module';
 
 
 
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
     // }),
     UserModule,
     AuthModule,
+    TosspaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
