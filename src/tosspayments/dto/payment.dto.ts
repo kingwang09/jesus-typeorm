@@ -1,14 +1,14 @@
 export class TossPaymentDto{
     version: string;
     paymentKey: string;
-    type: TossPaymentType;
     orderId: string;
+    totalAmount: number;
+    balanceAmount: number;
+    type: TossPaymentType;
     orderName: string;
     mId: string;
     currency: string;
     method: TossPaymentMethod;
-    totalAmount: number;
-    balanceAmount: number;
     status: TossPaymentStatus;
     requestedAt: string;
     approvedAt?: string;

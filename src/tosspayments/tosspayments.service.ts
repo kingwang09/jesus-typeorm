@@ -11,7 +11,7 @@ export class TosspaymentsService {
   constructor(
     @InjectRepository(TossPayment) 
     private paymentRepository: Repository<TossPayment>,
-){}
+  ){}
   async create(createTosspaymentDto: CreateTosspaymentDto) {
     const newPayment: TossPayment = {
       payment: createTosspaymentDto.payment,

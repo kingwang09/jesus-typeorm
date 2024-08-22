@@ -3,10 +3,11 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity';
+import { ManyToOneRelationPhoto } from 'src/relations/entities/relation.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User])
+    TypeOrmModule.forFeature([User, ManyToOneRelationPhoto])
   ],
   controllers: [UserController],
   providers: [UserService],

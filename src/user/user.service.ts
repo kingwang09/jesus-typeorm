@@ -52,4 +52,14 @@ export class UserService {
         console.log('delete result: ', deleteResult);
         return deleteResult.affected;
     }
+
+    async getUserById(id: number){
+        const user =  await this.userRepository.findOne({
+            where: {
+                id
+            }
+        });
+        console.log('getUserById: ', user);
+        return user;
+    }
 }

@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ormconfig } from './ormconfig';
 import { AuthModule } from './auth/auth.module';
 import { TosspaymentsModule } from './tosspayments/tosspayments.module';
+import { RelationsModule } from './relations/relations.module';
 
 
 
@@ -30,6 +31,7 @@ import { TosspaymentsModule } from './tosspayments/tosspayments.module';
     UserModule,
     AuthModule,
     TosspaymentsModule,
+    RelationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
