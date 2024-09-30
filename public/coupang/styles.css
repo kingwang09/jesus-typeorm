@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #6200ea;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 200px; /* 제품 카드 너비를 고정 */
+    box-sizing: border-box;
+    transition: transform 0.2s;
+}
+
+.product:hover {
+    transform: scale(1.05); /* 마우스 오버 시 확대 효과 */
+}
+
+.product img {
+    width: 100%; /* 이미지를 카드 너비에 맞추기 */
+    height: auto; /* 비율 유지 */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #6200ea;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
